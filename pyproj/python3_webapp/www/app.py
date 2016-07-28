@@ -97,7 +97,7 @@ async def response_factory(app, handler):
             if r.startswith('redirect:'):
                 return web.HTTPFound(r[9:])
             resp = web.Response(body=r.encode('utf-8'))
-            resp.content_type = 'text/html;charset=utf-8'
+            resp.content_type = 'text/json;charset=utf-8'
             return resp
         if isinstance(r, dict):
             template = r.get('__template__')
@@ -137,7 +137,7 @@ def datetime_filter(t):
 def init(loop):
     yield from orm.create_pool(loop=loop, **configs.db)
     app = web.Application(loop=loop, middlewares=[
-        logger_factory, response_factory
+        logger_factory, response_factory,data_factory
     ])
     init_jinja2(app, filters=dict(datetime=datetime_filter))
     add_routes(app, 'handlers')
