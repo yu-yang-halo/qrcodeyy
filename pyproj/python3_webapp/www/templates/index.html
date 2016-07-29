@@ -13,7 +13,7 @@
 		{{"<A><h>0F02333</h><p><n>3213213</n> <r>13Y000送风机状态</r><r>24Y001抽风机状态</r><r>35Y002冷却风机状态</r><r>46Y003冷却风泵状态</r><r>57Y004循环水泵状态</r> </p><p><n>5实时数据</n> <r>11D212顺序启动延时</r><r>22D1FE变频器频率</r><r>31D212顺序启动延时</r><r>42D1FE变频器频率</r><r>51D212顺序启动延</r></p></A>"}}
 		</textarea> </p>
 		<p>GET::<a href="http://192.168.2.119:8080/linkHtmlByObjectId?objectid=1223">linkHtmlByObjectId</a> </p>
-		<p>GET::<a href="http://192.168.2.119:8080/myQR/1469688223">/myQR/{qrindex} </a></p>
+		<p>GET::<a href="http://192.168.2.119:8080/api/myQR/1469688223">/myQR/{qrindex} </a></p>
 	</body>
 	<script>
 		function test(){
@@ -23,7 +23,7 @@
 				objectid: 1223,
 				qrcontent: text
 			}, function(result) {
-				alert(result);
+				alert(JSON.stringify(result));
 			});
 		}
 	</script>

@@ -20,11 +20,11 @@ def test(*,objectid,qrcontent):
        rows= yield from q.save()
        
     if rows!=1:
-       return ""
+       return dict(errCode=False,content="")
     else:
        arr=yield from queryQrObjectId(objectid)
        qOBJ=arr[0]
-       return qrindexUrl(qOBJ)
+       return dict(errCode=True,content=qrindexUrl(qOBJ))
 def queryQrIndex(qrindex):
     arr=yield from QrTable.findAll("qrindex=?",[qrindex])
     return arr
@@ -46,14 +46,18 @@ def linkhtml(*,objectid):
      else:
         return ""
 	 
-@get('/myQR/{qrindex}')
+@get('/api/myQR/{qrindex}')
 def queryQR(qrindex):
     arr=yield from queryQrIndex(qrindex)
     if len(arr)==1:
-       return arr[0]["qrcontent"]
-    return ""
+       return dict(errCode=True,content=arr[0]["qrcontent"])
+    return  dict(errCode=False,content="")
 
 @get('/')
 def main():
     return { '__template__': 'index.html'}
+
+@get('/json')
+def jsonTest():
+    return dict(name='yuyang',age=27)
 	   
