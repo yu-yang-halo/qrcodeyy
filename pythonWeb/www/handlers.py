@@ -59,6 +59,7 @@ def queryQR(qrindex):
 
 @get('/')
 def main():
-    return { '__template__': 'index.html'}
+    return { '__template__': 'index.html',
+             'server':configs.server}
 
 #####webservice API ########	   

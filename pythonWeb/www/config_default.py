@@ -17,8 +17,8 @@ configs = {
         'db': 'qrcode'
     },
 	'server':{
-	    'ip':'192.168.2.119',
-        'port':8080		
+	    'ip':'127.0.0.1',
+            'port':8080		
 	},
     'session': {
         'secret': 'qrcode'
